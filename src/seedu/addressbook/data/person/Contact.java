@@ -10,6 +10,11 @@ public class Contact {
     	this.value=contact;
     }
     
+    public Contact (String contact){
+    	contact=contact.trim();
+    	this.value=contact;
+    }
+    
     public String toString() {
         return value;
     }
