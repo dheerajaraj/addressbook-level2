@@ -11,7 +11,7 @@ import java.util.Objects;
 public class Person implements ReadOnlyPerson {
     
 	private static int nextSequenceNumber = 0;
-	private int sequenceNumber;
+	private int sequenceNumber = 0 ;
     private Name name;
     private Phone phone;
     private Email email;
