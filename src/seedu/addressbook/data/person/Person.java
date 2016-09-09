@@ -8,7 +8,7 @@ import java.util.Objects;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated.
  */
-public class Person implements Printable, ReadOnlyPerson {
+public class Person implements ReadOnlyPerson {
     
 	private static int nextSequenceNumber = 0;
 	private int sequenceNumber = 0 ;
@@ -75,7 +75,15 @@ public class Person implements Printable, ReadOnlyPerson {
     public void setTags(UniqueTagList replacement) {
         tags.setTags(replacement);
     }
-
+    
+    public String getPrintableString(Printable... printables){
+    	 StringBuilder stringConcatenation = new StringBuilder();
+         for(Printable personFields: printables){    
+             stringConcatenation.append(personFields.getPrintableString());
+         }
+         return stringConcatenation.toString();
+    }
+    
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -89,9 +97,5 @@ public class Person implements Printable, ReadOnlyPerson {
         return Objects.hash(name, phone, email, address, tags);
     }
 
-    @Override
-    public String toString() {
-        return getPrintableString(name, phone, email, address);
-    }
 
 }

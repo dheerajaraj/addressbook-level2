@@ -29,6 +29,7 @@ public class UniqueTagList implements Iterable<Tag> {
     public static class TagNotFoundException extends Exception {}
 
     private final List<Tag> internalList = new ArrayList<>();
+   // private final List<Tagging> tagTracker = new ArrayList<>();
 
     /**
      * Constructs an empty TagList.
@@ -94,6 +95,7 @@ public class UniqueTagList implements Iterable<Tag> {
             throw new DuplicateTagException();
         }
         internalList.add(toAdd);
+      //  tagTracker.add(new Tagging(toAdd))
     }
 
     /**
@@ -127,6 +129,7 @@ public class UniqueTagList implements Iterable<Tag> {
      */
     public void remove(Tag toRemove) throws TagNotFoundException {
         final boolean TagFoundAndDeleted = internalList.remove(toRemove);
+        
         if (!TagFoundAndDeleted) {
             throw new TagNotFoundException();
         }

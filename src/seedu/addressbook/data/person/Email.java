@@ -31,6 +31,10 @@ public class Email extends Contact {
     public static boolean isValidEmail(String test) {
         return test.matches(EMAIL_VALIDATION_REGEX);
     }
+    
+    public String getPrintableString(){
+    	return "Email: "+ toString();
+    }
 
     @Override
     public boolean equals(Object other) {

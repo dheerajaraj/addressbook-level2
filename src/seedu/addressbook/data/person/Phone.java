@@ -43,6 +43,10 @@ public class Phone extends Contact{
                 || (other instanceof Phone // instanceof handles nulls
                 && this.value.equals(((Phone) other).value)); // state check
     }
+    
+    public String getPrintableString(){
+    	return "Phone: "+toString();
+    }
 
     /*
     @Override

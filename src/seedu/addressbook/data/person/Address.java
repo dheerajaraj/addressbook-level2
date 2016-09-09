@@ -79,6 +79,9 @@ public class Address{
     	return postal.getPostalDigit().equals(postal1.getPostalDigit());
     }
     
+    public String getPrintableString(){
+    	return "Address: "+toString();
+    }
 
     @Override
     public boolean equals(Object other) {

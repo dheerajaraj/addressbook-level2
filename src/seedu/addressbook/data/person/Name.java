@@ -41,7 +41,9 @@ public class Name extends Contact{
         return Arrays.asList(value.split("\\s+"));
     }
 
-    
+    public String getPrintableString(){
+    	return "Person's Name: "+toString();
+    }
 
     @Override
     public boolean equals(Object other) {
