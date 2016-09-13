@@ -26,10 +26,13 @@ public class UniqueTagList implements Iterable<Tag> {
      * Signals that an operation targeting a specified Tag in the list would fail because
      * there is no such matching Tag in the list.
      */
-    public static class TagNotFoundException extends Exception {}
+    public static class TagNotFoundException extends Exception {
+    	protected TagNotFoundException(){
+    		super("No such tags found. Please try again.");
+    	}
+    }
 
     private final List<Tag> internalList = new ArrayList<>();
-   // private final List<Tagging> tagTracker = new ArrayList<>();
 
     /**
      * Constructs an empty TagList.
@@ -95,7 +98,6 @@ public class UniqueTagList implements Iterable<Tag> {
             throw new DuplicateTagException();
         }
         internalList.add(toAdd);
-      //  tagTracker.add(new Tagging(toAdd))
     }
 
     /**

@@ -5,7 +5,9 @@ import seedu.addressbook.data.person.UniquePersonList.*;
 import seedu.addressbook.data.tag.UniqueTagList;
 import seedu.addressbook.data.tag.UniqueTagList.*;
 import seedu.addressbook.data.tag.Tag;
+import seedu.addressbook.data.tag.Tagging;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -22,6 +24,7 @@ public class AddressBook {
 
     private final UniquePersonList allPersons;
     private final UniqueTagList allTags; // can contain tags not attached to any person
+    private final ArrayList<Tagging> taggingHistory = new ArrayList<Tagging>();
 
     /**
      * Creates an empty address book.
@@ -87,6 +90,11 @@ public class AddressBook {
      * @throws DuplicateTagException if an equivalent tag already exists.
      */
     public void addTag(Tag toAdd) throws DuplicateTagException {
+    	for(Person person:allPersons){
+    		if(person.getTags().contains(toAdd)){
+    			taggingHistory.add(new Tagging(1, person, toAdd));
+    		}
+    	}
         allTags.add(toAdd);
     }
 
@@ -117,8 +125,14 @@ public class AddressBook {
      * Removes the equivalent Tag from the address book.
      *
      * @throws TagNotFoundException if no such Tag could be found.
+     * @throws DuplicateTagException 
      */
-    public void removeTag(Tag toRemove) throws TagNotFoundException {
+    public void removeTag(Tag toRemove) throws TagNotFoundException, DuplicateTagException {
+    	for(Person person:allPersons){
+    		if(person.getTags().contains(toRemove)){
+    			taggingHistory.add(new Tagging(0, person, toRemove));
+    		}
+    	}
         allTags.remove(toRemove);
     }
 
